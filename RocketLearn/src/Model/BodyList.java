@@ -11,6 +11,11 @@ public class BodyList {
 		super();
 	}
 	
+	@Override
+	public String toString() {
+		return "BodyList [planets=" + planets + ", rockets=" + rockets + "]";
+	}
+
 	public void createPlanet(double mass, Vector position, Vector velocity, double radius) {
 		Planet planet = new Planet(mass,position,velocity,radius);
 		planets.add(planet);
@@ -28,6 +33,7 @@ public class BodyList {
 					planet1.addAccelerationByBody(planet2);
 			}
 		}
+		
 		
 		for (Rocket rocket:rockets) {
 			for (Body body:planets) {

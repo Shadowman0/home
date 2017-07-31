@@ -1,5 +1,7 @@
 package Model;
 
+import java.util.Arrays;
+
 public class Vector {
 	public double[] value = new double[2] ;
 	
@@ -12,6 +14,11 @@ public class Vector {
 		setValue(vector.value[0], vector.value[1]);
 	}
 	
+	@Override
+	public String toString() {
+		return "Vector [value=" + Arrays.toString(value) + "]";
+	}
+
 	public void setValue(double x,double y) {
 		value[0] = x;
 		value[1] = y;

@@ -1,6 +1,6 @@
 package Model;
 
 public interface PhysicConstants {
-	public static final double G = 1;
+	public static final double G = 10000;
 
 }

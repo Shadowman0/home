@@ -12,6 +12,11 @@ public abstract class Body {
 		return mass;
 	}
 
+	@Override
+	public String toString() {
+		return "Body [position=" + position + ", velocity=" + velocity + ", acceleration=" + acceleration + "]";
+	}
+
 	public Vector getPosition() {
 		return position;
 	}
@@ -29,6 +34,7 @@ public abstract class Body {
 		this.mass = mass;
 		this.position = position;
 		this.velocity = velocity;
+		this.acceleration = new Vector(0, 0);
 	}
 
 	public void resetAcceleration() {
@@ -37,10 +43,13 @@ public abstract class Body {
 
 	public void addAccelerationByBody(Body body) {
 		Vector position = body.getPosition();
+		
 		double mass = body.getMass();
-		double distance = this.position.calcDistance(body.getPosition());
+		double distance = this.position.calcDistance(position);
+		System.out.println(distance);	
 		Vector deltaA = position.calcNormedDistance(position).multByScalar(PhysicConstants.G * mass);
-		acceleration.addVector(deltaA);
+		System.out.println(deltaA);
+		this.acceleration.addVector(deltaA);
 	}
 
 	public void doTimeStep(double h) {
