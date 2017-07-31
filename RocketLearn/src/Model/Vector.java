@@ -40,19 +40,30 @@ public class Vector {
 		this.value[0] += scalar*vector.value[0];
 		this.value[1] += scalar*vector.value[1];
 	}
+	public Vector addVector2(Vector vector) {
+		Vector result = new Vector(this);
+		result.value[0] += vector.value[0];
+		result.value[1] += vector.value[1];
+		return result;
+	}
+	public Vector addVector2(Vector vector, double scalar) {
+		Vector result = new Vector(this);
+		result.value[0] += scalar*vector.value[0];
+		result.value[1] += scalar*vector.value[1];
+		return result;
+	}
 	
 	
 	public double calcDistance(Vector vector) {
-		return Math.sqrt( vector.value[0]*vector.value[0] 
-				+ vector.value[1]*vector.value[1]  );
+		return this.addVector2(vector, -1).norm();
 	}
 	public double norm() {
-		return calcDistance(new Vector(0,0));
+		return Math.sqrt( value[0]*value[0]+value[1]*value[1]);
 	}
 	
 	public Vector calcNormedDistance(Vector vector) {
 		double distance = calcDistance(vector);
-		return multByScalar(Math.pow(distance, 3));
+		return multByScalar(Math.pow(distance, -3));
 		
 	}
 
