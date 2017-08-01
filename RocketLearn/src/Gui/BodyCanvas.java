@@ -1,61 +1,63 @@
 package Gui;
 
-import java.awt.BasicStroke;
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Graphics;
-import java.awt.Graphics2D;
 import java.awt.Point;
-import java.awt.geom.Ellipse2D;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.swing.JApplet;
-import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import Model.Body;
+import Model.BodyList;
+import Model.Planet;
+import Model.Rocket;
 
-public class BodyCanvas extends JPanel{
+public class BodyCanvas extends JPanel {
+
+	public List<GuiPlanet> guiPlanets = new ArrayList<>();
+	public List<GuiRocket> guiRockets = new ArrayList<>();
+	public double scaling;
+	public GuiPlanet planet;
+	private BodyList bodyList;
 	
-	List<GuiPlanet> planets = new ArrayList<>();
-    public GuiPlanet planet;
+
 	public void paint(Graphics g) {
 		g.setColor(Color.BLACK);
-		
 		g.fillRect(0, 0, this.getWidth(), this.getHeight());
 		drawBodys(g);
+	}
 
-//        Graphics2D g2 = (Graphics2D) g;
-//
-//        g2.setPaint(Color.RED);
-//        g2.setStroke(new BasicStroke(5.0f));
-//        g2.draw(new Ellipse2D.Double(50, 50, 250, 250));
-//
-//        g2.setPaint(Color.BLUE);
-//        g2.fill(new Ellipse2D.Double(10, 10, 40, 40));
-//
-//        g2.setPaint(Color.YELLOW);
-//        g2.fill(new Ellipse2D.Double(10, 300, 40, 40));
-//
-//        g2.setPaint(Color.GREEN);
-//        g2.fill(new Ellipse2D.Double(300, 300, 40, 40));
-//
-//        g2.setPaint(Color.ORANGE);
-//        g2.fill(new Ellipse2D.Double(300, 10, 40, 40));
-    }
+	public BodyCanvas(BodyList bodyList, double scaling) {
+		this.bodyList = bodyList;
+		this.scaling = scaling;
+		createGuiBodys();
+//		planet = new GuiPlanet(new Point(100, 100), 20);
+//		guiPlanets.add(planet);
+	}
 
-    
-    public BodyCanvas(){
-    	planet = new GuiPlanet(new Point(100,100),20);
-    	planets.add(planet);
-    }
+	private void createGuiBodys() {
+//		planet.setScaledPosition(simulation.bodyList.rockets.get(0).getPosition(), 100, 0.5);
 
-
-	public void drawBodys(Graphics g) {
-		for (GuiPlanet guiPlanet : planets) {
-			guiPlanet.paintComponent(g);
+		for (Planet planet : bodyList.planets) {
+			GuiPlanet guiPlanet = new GuiPlanet(
+					planet, scaling);
+			guiPlanets.add(guiPlanet);
 		}
 		
-		
-	} 
+		for (Rocket rocket : bodyList.rockets) {
+			GuiRocket guiRocket = new GuiRocket(
+					rocket, scaling);
+			guiRockets.add(guiRocket);
+		}
+	}
+
+	public void drawBodys(Graphics g) {
+		for (GuiPlanet guiBody : guiPlanets) {
+			guiBody.paintBody(g,scaling);
+		}
+		for (GuiRocket guiBody : guiRockets) {
+			guiBody.paintBody(g,scaling);
+		}
+	}
 }

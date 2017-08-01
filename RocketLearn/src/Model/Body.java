@@ -1,5 +1,6 @@
 package Model;
 
+import java.awt.Graphics;
 import java.util.ArrayList;
 
 public abstract class Body {
@@ -62,6 +63,7 @@ public abstract class Body {
 	}
 
 	abstract public boolean isColliding(Planet body);
+
 
 	
 

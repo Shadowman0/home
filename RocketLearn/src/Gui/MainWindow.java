@@ -9,25 +9,23 @@ import java.awt.geom.Ellipse2D;
 
 import javax.swing.JFrame;
 
+import Model.BodyList;
+
 public class MainWindow {
 	JFrame frame = new JFrame("RocketTest");
-	public BodyCanvas bodyCanvas = new BodyCanvas();
+	private double scaling = 1;
+	public BodyCanvas bodyCanvas;
 	
-	public MainWindow(){
+	public MainWindow(BodyList bodyList){
 		frame.setSize(Toolkit.getDefaultToolkit().getScreenSize().width, 
 				Toolkit.getDefaultToolkit().getScreenSize().height);
 		
 		frame.setVisible(true);
+		bodyCanvas = new BodyCanvas(bodyList,scaling);
 		frame.add(bodyCanvas);
 	}
 	public void paint(Graphics g) {
 		bodyCanvas.drawBodys(g);
-		
-//        Graphics2D g2 = (Graphics2D) g;
-//        
-//        g2.setPaint(Color.BLUE);
-//        g2.fill(new Ellipse2D.Double(10, 300, 40, 40));
-
     }
 
 }

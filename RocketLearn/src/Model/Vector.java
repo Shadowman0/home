@@ -1,5 +1,6 @@
 package Model;
 
+import java.awt.Point;
 import java.util.Arrays;
 
 public class Vector {
@@ -18,6 +19,7 @@ public class Vector {
 	public String toString() {
 		return "Vector [value=" + Arrays.toString(value) + "]";
 	}
+	
 
 	public void setValue(double x,double y) {
 		value[0] = x;
@@ -66,5 +68,14 @@ public class Vector {
 		return multByScalar(Math.pow(distance, -3));
 		
 	}
+
+	public Point toPoint(double scaling) {
+		Point point = new Point(
+				(int)Math.round(value[0]*scaling),
+				(int)Math.round(value[1]*scaling)
+				);
+		return point;
+		}
+	
 
 }
