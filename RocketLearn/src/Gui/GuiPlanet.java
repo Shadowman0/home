@@ -23,13 +23,15 @@ public class GuiPlanet extends GuiBody{
 	}
 	public void setScaledPosition(Vector vector, double radius, double scaling) {
 		super.setScaledPosition(vector, scaling);
-		radius = Math.round(scaling*radius);
+		this.radius = (int) Math.round(scaling*radius*100);
 	}
-	
+	@Override
     public void paintBody(Graphics g, double scaling) {
     	Graphics2D g2 = (Graphics2D) g;
-    	setScaledPosition(body.getPosition(), radius, scaling);
+    	setScaledPosition(body.getPosition(), ((Planet)body).getRadius(), scaling);
         g2.setPaint(Color.BLUE);
+//        g2.fillRect(position.x, position.y, 10, 10);
         g2.fillOval(position.x, position.y, radius*2, radius*2);
+        System.out.println(radius);
     }
 } 

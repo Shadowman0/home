@@ -32,19 +32,14 @@ public class BodyCanvas extends JPanel {
 		this.bodyList = bodyList;
 		this.scaling = scaling;
 		createGuiBodys();
-//		planet = new GuiPlanet(new Point(100, 100), 20);
-//		guiPlanets.add(planet);
 	}
 
 	private void createGuiBodys() {
-//		planet.setScaledPosition(simulation.bodyList.rockets.get(0).getPosition(), 100, 0.5);
-
 		for (Planet planet : bodyList.planets) {
 			GuiPlanet guiPlanet = new GuiPlanet(
 					planet, scaling);
 			guiPlanets.add(guiPlanet);
 		}
-		
 		for (Rocket rocket : bodyList.rockets) {
 			GuiRocket guiRocket = new GuiRocket(
 					rocket, scaling);
@@ -59,5 +54,6 @@ public class BodyCanvas extends JPanel {
 		for (GuiRocket guiBody : guiRockets) {
 			guiBody.paintBody(g,scaling);
 		}
+		System.out.println(guiPlanets.get(0).position);
 	}
 }
