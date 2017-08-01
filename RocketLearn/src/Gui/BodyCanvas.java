@@ -16,13 +16,14 @@ import javax.swing.JPanel;
 
 
 public class BodyCanvas extends JPanel{
+	
 	List<GuiPlanet> planets = new ArrayList<>();
-	
-	
+    public GuiPlanet planet;
 	public void paint(Graphics g) {
-		for (GuiPlanet guiPlanet : planets) {
-			guiPlanet.paintComponent(g);
-		}
+		g.setColor(Color.BLACK);
+		
+		g.fillRect(0, 0, this.getWidth(), this.getHeight());
+		drawBodys(g);
 
 //        Graphics2D g2 = (Graphics2D) g;
 //
@@ -42,11 +43,19 @@ public class BodyCanvas extends JPanel{
 //        g2.setPaint(Color.ORANGE);
 //        g2.fill(new Ellipse2D.Double(300, 10, 40, 40));
     }
-	
-    GuiPlanet planet;
+
     
     public BodyCanvas(){
     	planet = new GuiPlanet(new Point(100,100),20);
     	planets.add(planet);
-    } 
+    }
+
+
+	public void drawBodys(Graphics g) {
+		for (GuiPlanet guiPlanet : planets) {
+			guiPlanet.paintComponent(g);
+		}
+		
+		
+	} 
 }

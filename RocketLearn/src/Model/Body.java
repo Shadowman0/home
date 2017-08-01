@@ -48,11 +48,11 @@ public abstract class Body {
 
 	public void addAccelerationByBody(Body body) {
 		Vector position = body.getPosition();
-		System.out.println(body);	
+//		System.out.println(body);	
 		
 		double mass = body.getMass();
 		Vector deltaA = this.position.calcNormedDistance(position);
-		deltaA = deltaA.multByScalar(PhysicConstants.G * mass);
+		deltaA = deltaA.multByScalar(-PhysicConstants.G * mass);
 		this.acceleration.addVector(deltaA);
 	}
 

@@ -5,8 +5,8 @@ public class Simulation {
 	
 	public Simulation(){
 		bodyList= new BodyList();
-		bodyList.createPlanet(10, new Vector(1, 0),new Vector(0,0), 1);
-		bodyList.createRocket(1, new Vector(10,0), new Vector(0,0.3));
+		bodyList.createPlanet(100, new Vector(300, 500),new Vector(0,0), 1);
+		bodyList.createRocket(1, new Vector(600, 500), new Vector(0,100));
 		
 	}
 	

@@ -11,7 +11,7 @@ import javax.swing.JPanel;
 
 import Model.Vector;
 
-class GuiPlanet {
+public class GuiPlanet {
 	public Point position;
 	private int radius;
 	
@@ -34,7 +34,8 @@ class GuiPlanet {
     	Graphics2D g2 = (Graphics2D) g;
 
         g2.setPaint(Color.BLUE);
-        g2.fill(new Ellipse2D.Double(2*radius,2*radius, position.x-radius, position.y-radius));
+        g2.fillOval(position.x, position.y, radius*2, radius*2);
+//        g2.fill(new Ellipse2D.Double(position.x-radius,position.y-radius, position.x+radius, position.y+radius));
 //    	
 //        Graphics2D g2d = (Graphics2D) g;
 //        g2d.setColor(Color.WHITE);
