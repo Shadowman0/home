@@ -54,6 +54,6 @@ public class BodyCanvas extends JPanel {
 		for (GuiRocket guiBody : guiRockets) {
 			guiBody.paintBody(g,scaling);
 		}
-		System.out.println(guiPlanets.get(0).position);
+//		System.out.println(guiPlanets.get(0).position);
 	}
 }

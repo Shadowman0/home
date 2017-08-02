@@ -17,7 +17,7 @@ public class MainWindow {
 	public BodyCanvas bodyCanvas;
 	
 	public MainWindow(BodyList bodyList){
-		frame.setSize(Toolkit.getDefaultToolkit().getScreenSize().width-40, 
+		frame.setSize(Toolkit.getDefaultToolkit().getScreenSize().width-200, 
 				Toolkit.getDefaultToolkit().getScreenSize().height-40);
 		
 		frame.setVisible(true);

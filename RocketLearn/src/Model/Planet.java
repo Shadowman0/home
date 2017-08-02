@@ -26,7 +26,7 @@ public class Planet extends Body {
 	}
 	
 	public void projectBody(Body body) {
-		if (isColliding(body)) {
+		if (body.isColliding(this)) {
 			Vector distanceVector = body.getPosition();
 			distanceVector.addVector(position, -1);
 			double norm = distanceVector.norm();

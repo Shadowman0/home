@@ -63,16 +63,23 @@ public class Vector {
 		return Math.sqrt( value[0]*value[0]+value[1]*value[1]);
 	}
 	
-	public Vector calcNormedDistance(Vector vector) {
-		double distance = calcDistance(vector);
-		return multByScalar(Math.pow(distance, -3));
-		
-	}
+//	public Vector calcNormedDistance(Vector vector) {
+//		double distance = calcDistance(vector);
+//		return multByScalar(Math.pow(distance, -3));
+//		
+//	}
 
 	public Point toPoint(double scaling) {
 		Point point = new Point(
 				(int)Math.round(value[0]*scaling),
 				(int)Math.round(value[1]*scaling)
+				);
+		return point;
+		}
+	public Point toPoint(double scaling,Point offset) {
+		Point point = new Point(
+				(int)(Math.round(value[0]*scaling)+offset.getX()),
+				(int)(Math.round(value[1]*scaling)+offset.getY())
 				);
 		return point;
 		}
