@@ -18,7 +18,7 @@ public class GuiRocket extends GuiBody {
 		Graphics2D g2 = (Graphics2D) g;
 		setScaledPosition(body.getPosition(), scaling);
         g2.setPaint(Color.RED);
-        g2.fillRect(position.x, position.y, 10, 10);
+        g2.fillRect(position.x-5, position.y-5, 10, 10);
 	}
 
 }

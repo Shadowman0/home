@@ -23,13 +23,14 @@ public class Planet extends Body {
 	public void projectBody(Body body) {
 		
 		if (isColliding(body)) {
-			Vector distanceVector = body.getPosition();
+			Vector distanceVector = new Vector(body.getPosition());
 			distanceVector.addVector(position, -1);
 			double norm = distanceVector.norm();
 			Vector newPosition = new Vector(getPosition());
 			newPosition.addVector(distanceVector, radius/norm);
 			body.setPosition(newPosition);
 			body.velocity.setValue(velocity);
+//			body.velocity.setValue(0,0);
 
 		}
 	}

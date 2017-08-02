@@ -23,6 +23,12 @@ public abstract class Body {
 
 
 
+	public Vector getVelocity() {
+		return velocity;
+	}
+
+
+
 	public Vector getPosition() {
 		return position;
 	}

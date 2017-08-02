@@ -14,6 +14,9 @@ public class Vector {
 	Vector(Vector vector) {
 		setValue(vector.value[0], vector.value[1]);
 	}
+	public Vector(Point point) {
+		setValue(point.getX(),point.getY());
+	}
 	
 	@Override
 	public String toString() {
@@ -27,7 +30,7 @@ public class Vector {
 	}
 	public void setValue(Vector vector) {
 		value[0] = vector.value[0];
-		value[0] = vector.value[0];
+		value[1] = vector.value[1];
 	}
 	public Vector multByScalar(double scalar) {
 		return new Vector(value[0]*scalar,value[1]*scalar); 

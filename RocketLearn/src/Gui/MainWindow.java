@@ -5,8 +5,12 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.geom.Ellipse2D;
 
+import javax.swing.AbstractAction;
 import javax.swing.JFrame;
 
 import Model.BodyList;
@@ -17,8 +21,8 @@ public class MainWindow {
 	public BodyCanvas bodyCanvas;
 	
 	public MainWindow(BodyList bodyList){
-		frame.setSize(Toolkit.getDefaultToolkit().getScreenSize().width-200, 
-				Toolkit.getDefaultToolkit().getScreenSize().height-40);
+		frame.setSize(Toolkit.getDefaultToolkit().getScreenSize().width/2, 
+				Toolkit.getDefaultToolkit().getScreenSize().height/2);
 		
 		frame.setVisible(true);
 		bodyCanvas = new BodyCanvas(bodyList,scaling);
@@ -27,5 +31,6 @@ public class MainWindow {
 	public void paint(Graphics g) {
 		bodyCanvas.drawBodys(g);
     }
+
 
 }
