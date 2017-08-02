@@ -54,7 +54,18 @@ public class BodyList {
 				planet.projectBody(body);
 			}
 		}
+		resetAccelerations();
 			
+	}
+
+	private void resetAccelerations() {
+		for (Body body:planets) {
+			body.resetAcceleration();
+		}
+		for (Body body:rockets) {
+			body.resetAcceleration();
+		}
+		
 	}
 	
 	

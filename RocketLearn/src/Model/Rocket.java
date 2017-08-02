@@ -7,7 +7,7 @@ public class Rocket extends Body {
 	}
 
 	@Override
-	public boolean isColliding(Planet body) {
+	public boolean isColliding(Body body) {
 		return false;
 	}
 	

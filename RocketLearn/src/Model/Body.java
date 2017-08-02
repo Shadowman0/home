@@ -51,17 +51,26 @@ public abstract class Body {
 		
 //		System.out.println(body);	
 		
-		Vector deltaA = this.position.addVector2(body.getPosition(), -1);
-		deltaA = deltaA.multByScalar(-Math.pow(deltaA.norm(), -3)*PhysicConstants.G * body.getMass());
-		this.acceleration.addVector(deltaA);
+		Vector deltaA = position.addVector2(body.getPosition(), -1);
+//		System.out.println(deltaA);
+		double scalar = -Math.pow(deltaA.norm(), -3)*PhysicConstants.G * body.getMass();
+		deltaA = deltaA.multByScalar(scalar);
+//		if (deltaA.norm()>2000) {
+//			deltaA = new Vector(0,0);
+//		}
+//		System.out.println(deltaA.norm());
+		if (!body.isColliding(this)) {
+			this.acceleration.addVector(deltaA);
+		}
 	}
 
 	public void doTimeStep(double h) {
 		velocity.addVector(acceleration, h);
 		position.addVector(velocity, h);
+//		System.out.println(this);
 	}
 
-	abstract public boolean isColliding(Planet body);
+	abstract public boolean isColliding(Body body);
 
 
 	

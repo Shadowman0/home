@@ -16,25 +16,25 @@ public class Planet extends Body {
 		this.radius = radius;
 		
 	}
-	@Override
-	public boolean isColliding(Planet body) {
-		// TODO Auto-generated method stub
-		return false;
-	}
 	public boolean isColliding(Body body) {
 		return distance(body) <= radius;
 	}
 	
 	public void projectBody(Body body) {
-		if (body.isColliding(this)) {
+		
+		if (isColliding(body)) {
 			Vector distanceVector = body.getPosition();
 			distanceVector.addVector(position, -1);
 			double norm = distanceVector.norm();
-			Vector newPosition = new Vector(position);
-			newPosition.addVector(distanceVector, 1/norm);
-			body.setPosition(newPosition);	
+			Vector newPosition = new Vector(getPosition());
+			newPosition.addVector(distanceVector, radius/norm);
+			body.setPosition(newPosition);
+			body.velocity.setValue(velocity);
+
 		}
 	}
+
+
 
 
 	
