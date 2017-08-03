@@ -27,6 +27,7 @@ public class MainWindow {
 		frame.setVisible(true);
 		bodyCanvas = new BodyCanvas(bodyList,scaling);
 		frame.add(bodyCanvas);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 	public void paint(Graphics g) {
 		bodyCanvas.drawBodys(g);

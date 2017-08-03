@@ -8,6 +8,8 @@ public abstract class Body {
 	protected Vector position;
 	protected Vector velocity;
 	protected Vector acceleration;
+	protected Vector accelerationDefault = new Vector(0,0);
+	protected Vector accelerationLast;
 
 	public double getMass() {
 		return mass;
@@ -28,7 +30,6 @@ public abstract class Body {
 	}
 
 
-
 	public Vector getPosition() {
 		return position;
 	}
@@ -47,10 +48,16 @@ public abstract class Body {
 		this.position = position;
 		this.velocity = velocity;
 		this.acceleration = new Vector(0, 0);
+		this.accelerationLast = new Vector(0, 0);
 	}
 
 	public void resetAcceleration() {
-		acceleration.setValue(0, 0);
+		accelerationLast.setValue(acceleration);
+		acceleration.setValue(accelerationDefault);
+	}
+	
+	public void accelerate(Vector direction,double scalar) {
+		accelerationDefault.setValue(direction.multByScalar(scalar));
 	}
 
 	public void addAccelerationByBody(Body body) {
@@ -73,7 +80,14 @@ public abstract class Body {
 	public void doTimeStep(double h) {
 		velocity.addVector(acceleration, h);
 		position.addVector(velocity, h);
-//		System.out.println(this);
+	}
+	
+	public void doTimeStepLeapFrog(double h) {
+		position.addVector(velocity, h);
+		position.addVector(accelerationLast, h*h/2);
+
+		velocity.addVector(acceleration, h/2);
+		velocity.addVector(accelerationLast, h/2);
 	}
 
 	abstract public boolean isColliding(Body body);

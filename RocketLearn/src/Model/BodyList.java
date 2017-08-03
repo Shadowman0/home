@@ -44,10 +44,10 @@ public class BodyList {
 	public void doIterationStep(double h) {
 		calculateAccelerations();
 		for (Body body:planets) {
-			body.doTimeStep(h);
+			body.doTimeStepLeapFrog(h);
 		}
 		for (Body body:rockets) {
-			body.doTimeStep(h);
+			body.doTimeStepLeapFrog(h);
 		}
 		for (Body body: rockets) {
 			for(Planet planet : planets) {

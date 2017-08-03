@@ -19,6 +19,7 @@ public class RocketLearnApp {
 	private static Timer timer;
 	private static Simulation simulation;
 	private static MainWindow mainWindow;
+	private static KeyActions keyActions;
 
 	public static void main(String[] args) {
 		simulation = new Simulation();
@@ -36,33 +37,8 @@ public class RocketLearnApp {
 		    	 simulation.bodyList.planets.get(0).setPosition(new Vector(e.getPoint()));
 		     }
 		  });
-		mainWindow.bodyCanvas.getInputMap().put(KeyStroke.getKeyStroke('w'), "");
-//		mainWindow.bodyCanvas.setFocusable(true);
-//		mainWindow.bodyCanvas.addKeyListener(new KeyListener() {
-//
-//			@Override
-//			public void keyPressed(KeyEvent arg0) {
-//				System.out.println(arg0.getKeyChar());
-//				if (arg0.getKeyChar()=='w')
-//				{
-//					simulation.bodyList.planets.get(0).getVelocity().value[2]+=10;
-//				}
-//				
-//			}
-//
-//			@Override
-//			public void keyReleased(KeyEvent arg0) {
-//				// TODO Auto-generated method stub
-//				
-//			}
-//
-//			@Override
-//			public void keyTyped(KeyEvent arg0) {
-//				// TODO Auto-generated method stub
-//				
-//			}
-//			
-//		});
+		keyActions = new KeyActions(mainWindow.bodyCanvas, simulation.bodyList.rockets.get(0));
+		keyActions.setKeyMaps();
 		timer.start();
 
 	}

@@ -7,11 +7,11 @@ public class Vector {
 	public double[] value = new double[2] ;
 	
 	
-	Vector(double x, double y) {
+	public Vector(double x, double y) {
 		setValue(x, y);
 	}	
 	
-	Vector(Vector vector) {
+	public Vector(Vector vector) {
 		setValue(vector.value[0], vector.value[1]);
 	}
 	public Vector(Point point) {
