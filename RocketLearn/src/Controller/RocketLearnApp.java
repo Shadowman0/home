@@ -32,11 +32,11 @@ public class RocketLearnApp {
 			}
 		});
 		mainWindow.bodyCanvas.addMouseListener(new MouseAdapter() {
-		     @Override
-		     public void mousePressed(MouseEvent e) {
-		    	 simulation.bodyList.planets.get(0).setPosition(new Vector(e.getPoint()));
-		     }
-		  });
+			@Override
+			public void mousePressed(MouseEvent e) {
+				simulation.bodyList.planets.get(0).setPosition(new Vector(e.getPoint()));
+			}
+		});
 		keyActions = new KeyActions(mainWindow.bodyCanvas, simulation.bodyList.rockets.get(0));
 		keyActions.setKeyMaps();
 		timer.start();
@@ -47,6 +47,7 @@ public class RocketLearnApp {
 		simulation.bodyList.doIterationStep(0.01);
 		mainWindow.bodyCanvas.repaint();
 		
+
 	}
 }
 

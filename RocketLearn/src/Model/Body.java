@@ -1,21 +1,17 @@
 package Model;
 
-import java.awt.Graphics;
-import java.util.ArrayList;
-
 public abstract class Body {
 	protected double mass;
 	protected Vector position;
 	protected Vector velocity;
+	protected Vector orientation = new Vector(0, -1);
 	protected Vector acceleration;
-	protected Vector accelerationDefault = new Vector(0,0);
+	protected Vector accelerationDefault = new Vector(0, 0);
 	protected Vector accelerationLast;
 
 	public double getMass() {
 		return mass;
 	}
-
-	
 
 	@Override
 	public String toString() {
@@ -23,12 +19,9 @@ public abstract class Body {
 				+ acceleration + "]";
 	}
 
-
-
 	public Vector getVelocity() {
 		return velocity;
 	}
-
 
 	public Vector getPosition() {
 		return position;
@@ -55,23 +48,16 @@ public abstract class Body {
 		accelerationLast.setValue(acceleration);
 		acceleration.setValue(accelerationDefault);
 	}
-	
-	public void accelerate(Vector direction,double scalar) {
+
+	public void accelerate(Vector direction, double scalar) {
 		accelerationDefault.setValue(direction.multByScalar(scalar));
 	}
 
 	public void addAccelerationByBody(Body body) {
-		
-//		System.out.println(body);	
-		
+
 		Vector deltaA = position.addVector2(body.getPosition(), -1);
-//		System.out.println(deltaA);
-		double scalar = -Math.pow(deltaA.norm(), -3)*PhysicConstants.G * body.getMass();
+		double scalar = -Math.pow(deltaA.norm(), -3) * PhysicConstants.G * body.getMass();
 		deltaA = deltaA.multByScalar(scalar);
-//		if (deltaA.norm()>2000) {
-//			deltaA = new Vector(0,0);
-//		}
-//		System.out.println(deltaA.norm());
 		if (!body.isColliding(this)) {
 			this.acceleration.addVector(deltaA);
 		}
@@ -81,18 +67,15 @@ public abstract class Body {
 		velocity.addVector(acceleration, h);
 		position.addVector(velocity, h);
 	}
-	
+
 	public void doTimeStepLeapFrog(double h) {
 		position.addVector(velocity, h);
-		position.addVector(accelerationLast, h*h/2);
+		position.addVector(accelerationLast, h * h / 2);
 
-		velocity.addVector(acceleration, h/2);
-		velocity.addVector(accelerationLast, h/2);
+		velocity.addVector(acceleration, h / 2);
+		velocity.addVector(accelerationLast, h / 2);
 	}
 
 	abstract public boolean isColliding(Body body);
-
-
-	
 
 }
