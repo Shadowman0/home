@@ -1,4 +1,4 @@
-package Controller;
+package controller;
 
 import java.awt.event.ActionEvent;
 
@@ -6,8 +6,8 @@ import javax.swing.AbstractAction;
 import javax.swing.JComponent;
 import javax.swing.KeyStroke;
 
-import Model.Body;
-import Model.Vector;
+import model.Body;
+import model.Vector;
 
 public class KeyActions {
 	public JComponent component;

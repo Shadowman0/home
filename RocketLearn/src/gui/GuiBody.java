@@ -1,10 +1,10 @@
-package Gui;
+package gui;
 
 import java.awt.Graphics;
 import java.awt.Point;
 
-import Model.Body;
-import Model.Vector;
+import model.Body;
+import model.Vector;
 
 public abstract class GuiBody {
 	public Point position;

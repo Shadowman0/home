@@ -1,11 +1,11 @@
-package Gui;
+package gui;
 
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
 
-import Model.Rocket;
+import model.Rocket;
 
 public class GuiRocket extends GuiBody {
 

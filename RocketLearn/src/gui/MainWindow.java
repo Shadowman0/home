@@ -1,4 +1,4 @@
-package Gui;
+package gui;
 
 import java.awt.BasicStroke;
 import java.awt.Color;
@@ -13,7 +13,7 @@ import java.awt.geom.Ellipse2D;
 import javax.swing.AbstractAction;
 import javax.swing.JFrame;
 
-import Model.BodyList;
+import model.BodyList;
 
 public class MainWindow {
 	JFrame frame = new JFrame("RocketTest");

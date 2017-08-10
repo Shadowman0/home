@@ -1,4 +1,4 @@
-package Model;
+package model;
 
 public abstract class Body {
 	protected double mass;
@@ -56,10 +56,25 @@ public abstract class Body {
 	public void addAccelerationByBody(Body body) {
 
 		Vector deltaA = position.addVector2(body.getPosition(), -1);
-		double scalar = -Math.pow(deltaA.norm(), -3) * PhysicConstants.G * body.getMass();
-		deltaA = deltaA.multByScalar(scalar);
-		if (!body.isColliding(this)) {
-			this.acceleration.addVector(deltaA);
+		if (!(deltaA.norm() == 0)) {
+			double scalar = -Math.pow(deltaA.norm(), -3) * PhysicConstants.GRAVITY_CONSTANT * body.getMass();
+			deltaA = deltaA.multByScalar(scalar);
+			if (!body.isColliding(this)) {
+				this.acceleration.addVector(deltaA);
+			}
+		}
+	}
+
+	public void addAccelerationByNeighborPart(Body body, double desiredDistance) {
+
+		Vector deltaA = position.addVector2(body.getPosition(), -1);
+		if (!(deltaA.norm() == 0)) {
+			Vector scaledDiffVector = deltaA.multByScalar(desiredDistance / deltaA.norm());
+			deltaA = scaledDiffVector.addVector2(deltaA, -1);
+			// deltaA entspricht nun der Auslenkung der "Feder"
+
+			double strength = PhysicConstants.HOOK_CONSTANT / this.getMass();
+			this.acceleration.addVector(deltaA.multByScalar(strength));
 		}
 	}
 
@@ -77,5 +92,7 @@ public abstract class Body {
 	}
 
 	abstract public boolean isColliding(Body body);
+
+	abstract public void calcInnerForces();
 
 }

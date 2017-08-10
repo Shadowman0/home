@@ -1,4 +1,4 @@
-package Controller;
+package controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -11,8 +11,8 @@ import javax.swing.JPanel;
 import javax.swing.KeyStroke;
 import javax.swing.Timer;
 
-import Gui.*;
-import Model.*;
+import gui.*;
+import model.*;
 
 public class RocketLearnApp {
 

@@ -1,4 +1,4 @@
-package Gui;
+package gui;
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -8,10 +8,10 @@ import java.util.List;
 
 import javax.swing.JPanel;
 
-import Model.Body;
-import Model.BodyList;
-import Model.Planet;
-import Model.Rocket;
+import model.Body;
+import model.BodyList;
+import model.Planet;
+import model.Rocket;
 
 public class BodyCanvas extends JPanel {
 

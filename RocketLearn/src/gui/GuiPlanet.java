@@ -1,4 +1,4 @@
-package Gui;
+package gui;
 
 import java.awt.BasicStroke;
 import java.awt.Color;
@@ -9,9 +9,9 @@ import java.awt.geom.Ellipse2D;
 
 import javax.swing.JPanel;
 
-import Model.Body;
-import Model.Planet;
-import Model.Vector;
+import model.Body;
+import model.Planet;
+import model.Vector;
 
 public class GuiPlanet extends GuiBody{
 	private int radius;
