@@ -1,6 +1,6 @@
 package model;
 
-public abstract class Body {
+public abstract class SimpleBody extends AbstractBody {
 	protected double mass;
 	protected Vector position;
 	protected Vector velocity;
@@ -30,11 +30,11 @@ public abstract class Body {
 		this.position = position;
 	}
 
-	public double distance(Body body) {
+	public double distance(SimpleBody body) {
 		return position.calcDistance(body.getPosition());
 	}
 
-	public Body(double mass, Vector position, Vector velocity) {
+	public SimpleBody(double mass, Vector position, Vector velocity) {
 		super();
 		this.mass = mass;
 		this.position = position;
@@ -52,7 +52,7 @@ public abstract class Body {
 		accelerationDefault.setValue(direction.multByScalar(scalar));
 	}
 
-	public void addAccelerationByBody(Body body) {
+	public void addAccelerationByBody(SimpleBody body) {
 
 		Vector deltaA = position.addVector2(body.getPosition(), -1);
 		if (!(deltaA.norm() == 0)) {
@@ -64,7 +64,7 @@ public abstract class Body {
 		}
 	}
 
-	public void addAccelerationByNeighborPart(Body body, double desiredDistance) {
+	public void addAccelerationByNeighborPart(SimpleBody body, double desiredDistance) {
 
 		Vector deltaA = position.addVector2(body.getPosition(), -1);
 		if (!(deltaA.norm() == 0)) {
@@ -90,7 +90,7 @@ public abstract class Body {
 		velocity.addVector(accelerationLast, h / 2);
 	}
 
-	abstract public boolean isColliding(Body body);
+	abstract public boolean isColliding(SimpleBody body);
 
 	abstract public void calcInnerForces();
 

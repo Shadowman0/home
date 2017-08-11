@@ -1,6 +1,6 @@
 package model;
 
-public class Planet extends Body {
+public class Planet extends SimpleBody {
 	private double radius;
 
 	public double getRadius() {
@@ -17,11 +17,11 @@ public class Planet extends Body {
 
 	}
 
-	public boolean isColliding(Body body) {
+	public boolean isColliding(AbstractBody body) {
 		return distance(body) <= radius;
 	}
 
-	public void projectBody(Body body) {
+	public void projectBody(AbstractBody body) {
 
 		if (isColliding(body)) {
 			Vector distanceVector = new Vector(body.getPosition());
@@ -30,7 +30,7 @@ public class Planet extends Body {
 			Vector newPosition = new Vector(getPosition());
 			newPosition.addVector(distanceVector, radius / norm);
 			body.setPosition(newPosition);
-			body.velocity.setValue(velocity);
+			body.setVelocity(velocity);
 			// body.velocity.setValue(0,0);
 
 		}
@@ -38,6 +38,24 @@ public class Planet extends Body {
 
 	@Override
 	public void calcInnerForces() {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public boolean isColliding(SimpleBody body) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public void setVelocity(Vector position) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void addAccelerationByBody(AbstractBody body) {
 		// TODO Auto-generated method stub
 
 	}

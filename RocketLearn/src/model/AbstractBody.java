@@ -6,13 +6,17 @@ public abstract class AbstractBody {
 
 	public abstract Vector getVelocity();
 
+	public abstract void setVelocity(Vector position);
+
 	public abstract Vector getPosition();
+
+	public abstract void setPosition(Vector position);
 
 	public abstract void resetAcceleration();
 
-	public abstract void addAccelerationByBody(AbstractBody body);
+	public abstract void addAccelerationByForce(AbstractBody body);
 
-	public abstract void accelerate(Vector direction, double scalar);
+	// public abstract void accelerate(Vector direction, double scalar);
 
 	public double distance(AbstractBody body) {
 
@@ -23,7 +27,7 @@ public abstract class AbstractBody {
 
 	abstract public void doTimeStepLeapFrog(double h);
 
-	abstract public boolean isColliding(Body body);
+	abstract public boolean isColliding(AbstractBody body);
 
 	abstract public void calcInnerForces();
 

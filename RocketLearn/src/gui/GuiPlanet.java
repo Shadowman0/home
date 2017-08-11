@@ -9,7 +9,7 @@ import java.awt.geom.Ellipse2D;
 
 import javax.swing.JPanel;
 
-import model.Body;
+import model.SimpleBody;
 import model.Planet;
 import model.Vector;
 

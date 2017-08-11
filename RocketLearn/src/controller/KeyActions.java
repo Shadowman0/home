@@ -6,14 +6,14 @@ import javax.swing.AbstractAction;
 import javax.swing.JComponent;
 import javax.swing.KeyStroke;
 
-import model.Body;
+import model.SimpleBody;
 import model.Vector;
 
 public class KeyActions {
 	public JComponent component;
-	public Body body;
+	public SimpleBody body;
 
-	public KeyActions(JComponent component, Body body) {
+	public KeyActions(JComponent component, SimpleBody body) {
 		super();
 		this.component = component;
 		this.body = body;
@@ -31,9 +31,9 @@ class MoveAction extends AbstractAction {
 
 	public Vector direction;
 	public double thrust;
-	public Body body;
+	public SimpleBody body;
 
-	public MoveAction(Vector direction, double thrust, Body body) {
+	public MoveAction(Vector direction, double thrust, SimpleBody body) {
 		super();
 		this.direction = direction;
 		this.thrust = thrust;

@@ -8,7 +8,7 @@ import java.util.List;
 
 import javax.swing.JPanel;
 
-import model.Body;
+import model.SimpleBody;
 import model.BodyList;
 import model.Planet;
 import model.Rocket;

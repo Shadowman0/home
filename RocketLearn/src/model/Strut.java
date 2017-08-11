@@ -2,11 +2,11 @@ package model;
 
 public class Strut {
 
-	private Body firstBody;
-	private Body secondBody;
+	private SimpleBody firstBody;
+	private SimpleBody secondBody;
 	private double distance;
 
-	public Strut(Body firstBody, Body secondBody, double distance) {
+	public Strut(SimpleBody firstBody, SimpleBody secondBody, double distance) {
 		super();
 		this.firstBody = firstBody;
 		this.secondBody = secondBody;
