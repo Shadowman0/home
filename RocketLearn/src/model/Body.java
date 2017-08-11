@@ -4,7 +4,6 @@ public abstract class Body {
 	protected double mass;
 	protected Vector position;
 	protected Vector velocity;
-	protected Vector orientation = new Vector(0, -1);
 	protected Vector acceleration;
 	protected Vector accelerationDefault = new Vector(0, 0);
 	protected Vector accelerationLast;
