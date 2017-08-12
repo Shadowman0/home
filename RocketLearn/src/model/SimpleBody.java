@@ -1,6 +1,6 @@
 package model;
 
-public abstract class SimpleBody extends AbstractBody {
+public class SimpleBody extends AbstractBody {
 	protected double mass;
 	protected Vector position;
 	protected Vector velocity;
@@ -64,6 +64,12 @@ public abstract class SimpleBody extends AbstractBody {
 
 	public void calcInnerForces() {
 
+	}
+
+	@Override
+	public boolean isColliding(AbstractBody body) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 }

@@ -41,8 +41,6 @@ public class Vector {
 		this.value[0] += vector.value[0];
 		this.value[1] += vector.value[1];
 	}
-	velocity.addVector()
-	velocity.multByScalar
 
 	public void addVector(Vector vector, double scalar) {
 		this.value[0] += scalar * vector.value[0];
