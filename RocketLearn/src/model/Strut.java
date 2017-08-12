@@ -1,5 +1,7 @@
 package model;
 
+import model.forces.Forces;
+
 public class Strut {
 
 	private SimpleBody firstBody;
@@ -14,8 +16,9 @@ public class Strut {
 	}
 
 	public void pushPull() {
-		firstBody.addAccelerationByNeighborPart(secondBody, distance);
-		secondBody.addAccelerationByNeighborPart(firstBody, distance);
+		Vector forceVector = Forces.hookForceBetweenBodys(firstBody, secondBody, distance);
+		firstBody.addAccelerationByForce(forceVector);
+		secondBody.addAccelerationByForce(forceVector);
 	}
 
 }

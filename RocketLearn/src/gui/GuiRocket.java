@@ -5,7 +5,7 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
 
-import model.Rocket;
+import model.rockets.Rocket;
 
 public class GuiRocket extends GuiBody {
 

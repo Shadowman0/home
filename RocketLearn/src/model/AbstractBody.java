@@ -14,13 +14,15 @@ public abstract class AbstractBody {
 
 	public abstract void resetAcceleration();
 
-	public abstract void addAccelerationByForce(AbstractBody body);
+	public abstract void addAccelerationByForce(Vector forceVector);
 
-	// public abstract void accelerate(Vector direction, double scalar);
+	public Vector distanceVector(AbstractBody body) {
+		return new Vector(this.getPosition().addVector2(body.getPosition(), -1));
+	}
 
 	public double distance(AbstractBody body) {
 
-		return getPosition().calcDistance(body.getPosition());
+		return distanceVector(body).norm();
 	}
 
 	abstract public void doTimeStep(double h);

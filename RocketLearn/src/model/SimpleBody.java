@@ -5,17 +5,14 @@ public abstract class SimpleBody extends AbstractBody {
 	protected Vector position;
 	protected Vector velocity;
 	protected Vector acceleration;
-	protected Vector accelerationDefault = new Vector(0, 0);
 	protected Vector accelerationLast;
+
+	public void setVelocity(Vector velocity) {
+		this.velocity = velocity;
+	}
 
 	public double getMass() {
 		return mass;
-	}
-
-	@Override
-	public String toString() {
-		return "Body [mass=" + mass + ", position=" + position + ", velocity=" + velocity + ", acceleration="
-				+ acceleration + "]";
 	}
 
 	public Vector getVelocity() {
@@ -45,36 +42,7 @@ public abstract class SimpleBody extends AbstractBody {
 
 	public void resetAcceleration() {
 		accelerationLast.setValue(acceleration);
-		acceleration.setValue(accelerationDefault);
-	}
-
-	public void accelerate(Vector direction, double scalar) {
-		accelerationDefault.setValue(direction.multByScalar(scalar));
-	}
-
-	public void addAccelerationByBody(SimpleBody body) {
-
-		Vector deltaA = position.addVector2(body.getPosition(), -1);
-		if (!(deltaA.norm() == 0)) {
-			double scalar = -Math.pow(deltaA.norm(), -3) * PhysicConstants.GRAVITY_CONSTANT * body.getMass();
-			deltaA = deltaA.multByScalar(scalar);
-			if (!body.isColliding(this)) {
-				this.acceleration.addVector(deltaA);
-			}
-		}
-	}
-
-	public void addAccelerationByNeighborPart(SimpleBody body, double desiredDistance) {
-
-		Vector deltaA = position.addVector2(body.getPosition(), -1);
-		if (!(deltaA.norm() == 0)) {
-			Vector scaledDiffVector = deltaA.multByScalar(desiredDistance / deltaA.norm());
-			deltaA = scaledDiffVector.addVector2(deltaA, -1);
-			// deltaA entspricht nun der Auslenkung der "Feder"
-
-			double strength = PhysicConstants.HOOK_CONSTANT / this.getMass();
-			this.acceleration.addVector(deltaA.multByScalar(strength));
-		}
+		acceleration.setValue(new Vector(0, 0));
 	}
 
 	public void doTimeStep(double h) {
@@ -90,8 +58,12 @@ public abstract class SimpleBody extends AbstractBody {
 		velocity.addVector(accelerationLast, h / 2);
 	}
 
-	abstract public boolean isColliding(SimpleBody body);
+	public void addAccelerationByForce(Vector forceVector) {
+		acceleration = acceleration.addVector2(forceVector.multByScalar(1 / getMass()));
+	}
 
-	abstract public void calcInnerForces();
+	public void calcInnerForces() {
+
+	}
 
 }

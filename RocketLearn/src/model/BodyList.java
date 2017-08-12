@@ -2,6 +2,10 @@ package model;
 
 import java.util.ArrayList;
 
+import model.forces.Forces;
+import model.rockets.Rocket;
+import model.rockets.RocketSmall;
+
 public class BodyList {
 	public ArrayList<Planet> planets = new ArrayList();;
 	public ArrayList<Rocket> rockets = new ArrayList();;
@@ -21,25 +25,35 @@ public class BodyList {
 
 	}
 
-	public void createRocket(double mass, Vector position, Vector velocity) {
-		Rocket rocket = new Rocket(mass, position, velocity);
+	public void createRocketSmall(double mass, Vector position, Vector velocity) {
+		
+		Rocket rocket = new RocketSmall(engine, tank, cargo, strutlength)
 		rockets.add(rocket);
 
 	}
 
 	public void calculateAccelerations() {
+		Vector forceVector;
 		for (Planet planet1 : planets) {
 			for (Planet planet2 : planets) {
-				if (planet1 != planet2)
-					planet1.addAccelerationByBody(planet2);
+				if (planet1 != planet2) {
+					forceVector = Forces.gravityForceBetweenBodys(planet1, planet2);
+					planet1.addAccelerationByForce(forceVector);
+				}
 			}
 		}
 
 		for (Rocket rocket : rockets) {
-			for (SimpleBody body : planets) {
-				rocket.addAccelerationByBody(body);
+			rocket.calcInnerForces();
+			for (SimpleBody planet : planets) {
+				forceVector = Forces.gravityForceBetweenBodys(rocket, planet);
+				rocket.addAccelerationByForce(forceVector);
+
+				forceVector = Forces.dragForceBetweenBodys(rocket, planet);
+				rocket.addAccelerationByForce(forceVector);
 			}
 		}
+
 	}
 
 	public void doIterationStep(double h) {

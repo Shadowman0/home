@@ -9,9 +9,9 @@ import java.util.List;
 import javax.swing.JPanel;
 
 import model.SimpleBody;
+import model.rockets.Rocket;
 import model.BodyList;
 import model.Planet;
-import model.Rocket;
 
 public class BodyCanvas extends JPanel {
 
