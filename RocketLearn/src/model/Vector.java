@@ -81,9 +81,15 @@ public class Vector {
 	}
 
 	public Point toPoint(double scaling, Point offset) {
-		Point point = new Point((int) (Math.round(value[0] * scaling) + offset.getX()),
-				(int) (Math.round(value[1] * scaling) + offset.getY()));
+		Point point = new Point((int) (Math.round(value[0] * scaling) + offset.getX()), (int) (Math.round(value[1] * scaling) + offset.getY()));
 		return point;
+	}
+
+	public Vector rotate(double angle) {
+		Vector result = new Vector(
+				Math.cos(value[0]) - Math.sin(value[1]),
+				Math.sin(value[0]) + Math.cos(value[1]));
+		return result;
 	}
 
 }

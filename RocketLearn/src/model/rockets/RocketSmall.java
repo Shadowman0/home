@@ -1,39 +1,60 @@
 package model.rockets;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import model.SimpleBody;
 import model.Vector;
 
 public class RocketSmall extends Rocket {
-	private RocketEngine engine;
-	private RocketFuelTank tank;
-	private SimpleBody cargo;
+    private RocketEngine engine;
+    private RocketFuelTank tank;
+    private SimpleBody cargo;
 
-	public RocketSmall(RocketEngine engine, RocketFuelTank tank, SimpleBody cargo, double strutLength) {
-		super();
-		this.engine = engine;
-		this.tank = tank;
-		this.cargo = cargo;
-		addStrut(engine, tank, strutLength);
-		addStrut(tank, cargo, strutLength);
-	}
+    public RocketSmall(RocketEngine engine, RocketFuelTank tank, SimpleBody cargo) {
+        super();
+        init(engine, tank, cargo);
+    }
 
-	public RocketSmall(double mass, Vector position, Vector velocity) {
+    public RocketSmall(double mass, Vector position, Vector velocity, Vector orientation) {
 		super();
 		double partMass = mass / 5;
 		double strutLength = 1;
 
 		Vector defaultPosition = new Vector(0, 0);
 		Vector defaultVelocity = new Vector(0, 0);
-		RocketEngine engine = new RocketEngine(partMass, defaultPosition, defaultVelocity, 1);
-		RocketFuelTank tank = new RocketFuelTank(partMass, defaultPosition, defaultVelocity, partMass / 9 * 8,
-				partMass / 9 * 8);
-		SimpleBody cargo = new SimpleBody(partMass, defaultVelocity, defaultVelocity);
-		this.engine = engine;
-		this.tank = tank;
-		this.cargo = cargo;
-		addStrut(engine, tank, strutLength);
-		addStrut(tank, cargo, strutLength);
+		RocketEngine engine = new RocketEngine(partMass, defaultPosition.addVector2(new Vector(0, -1)), defaultVelocity, 1);
+		RocketFuelTank tank = new RocketFuelTank(partMass, defaultPosition, defaultVelocity, partMass / 9 * 8, partMass / 9 * 8);
+		SimpleBody cargo = new SimpleBody(partMass, defaultPosition.addVector2(new Vector(0, 1)), defaultVelocity);
+		init(engine, tank, cargo);
 
+		List<SimpleBody> realRocketParts = new ArrayList<>();
+		realRocketParts.add(engine);
+		realRocketParts.add(tank);
+		realRocketParts.add(cargo);
+
+		SimpleBody helpBody1 = new SimpleBody(partMass, defaultPosition.addVector2(new Vector(0.5, 0)), defaultVelocity);
+		SimpleBody helpBody2 = new SimpleBody(partMass, defaultPosition.addVector2(new Vector(-0.5, 0)), defaultVelocity);
+
+		for (SimpleBody part : realRocketParts) {
+			addStrut(helpBody1, part);
+		}
+		for (SimpleBody part : realRocketParts) {
+			addStrut(helpBody2, part);
+		}
+		rotate()
+		setPosition(position);
+		setVelocity(velocity);
+		position = getPosition().rotate(position,mass)
+		
 	}
+
+    private void init(RocketEngine engine, RocketFuelTank tank, SimpleBody cargo) {
+        this.engine = engine;
+        this.tank = tank;
+        this.cargo = cargo;
+        addStrut(engine, tank);
+        addStrut(tank, cargo);
+    }
 
 }

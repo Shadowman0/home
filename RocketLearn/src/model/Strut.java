@@ -4,21 +4,36 @@ import model.forces.Forces;
 
 public class Strut {
 
-	private SimpleBody firstBody;
-	private SimpleBody secondBody;
-	private double distance;
+    private SimpleBody firstBody;
+    private SimpleBody secondBody;
+    private double distance;
 
-	public Strut(SimpleBody firstBody, SimpleBody secondBody, double distance) {
-		super();
-		this.firstBody = firstBody;
-		this.secondBody = secondBody;
-		this.distance = distance;
-	}
+    public double getDistance() {
+        return distance;
+    }
 
-	public void pushPull() {
-		Vector forceVector = Forces.hookForceBetweenBodys(firstBody, secondBody, distance);
-		firstBody.addAccelerationByForce(forceVector);
-		secondBody.addAccelerationByForce(forceVector);
-	}
+    public void setDistance(double distance) {
+        this.distance = distance;
+    }
+
+    public Strut(SimpleBody firstBody, SimpleBody secondBody, double distance) {
+        super();
+        this.firstBody = firstBody;
+        this.secondBody = secondBody;
+        this.distance = distance;
+    }
+
+    public Strut(SimpleBody firstBody, SimpleBody secondBody) {
+        super();
+        this.firstBody = firstBody;
+        this.secondBody = secondBody;
+        this.distance = firstBody.distance(secondBody);
+    }
+
+    public void pushPull() {
+        Vector forceVector = Forces.hookForceBetweenBodys(firstBody, secondBody, distance);
+        firstBody.addAccelerationByForce(forceVector);
+        secondBody.addAccelerationByForce(forceVector);
+    }
 
 }

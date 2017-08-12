@@ -13,8 +13,8 @@ public abstract class Rocket extends AbstractBody {
 	private Set<Strut> struts = new HashSet<>();
 	private Set<SimpleBody> rocketParts = new HashSet<>();
 
-	public void addStrut(SimpleBody firstBody, SimpleBody secondBody, double length) {
-		struts.add(new Strut(firstBody, secondBody, length));
+	public void addStrut(SimpleBody firstBody, SimpleBody secondBody) {
+		struts.add(new Strut(firstBody, secondBody));
 		rocketParts.add(firstBody);
 		rocketParts.add(secondBody);
 	}

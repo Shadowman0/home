@@ -27,10 +27,6 @@ public class SimpleBody extends AbstractBody {
 		this.position = position;
 	}
 
-	public double distance(SimpleBody body) {
-		return position.calcDistance(body.getPosition());
-	}
-
 	public SimpleBody(double mass, Vector position, Vector velocity) {
 		super();
 		this.mass = mass;
