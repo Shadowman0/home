@@ -1,6 +1,7 @@
 package gui;
 
 import java.awt.Graphics;
+import java.awt.Point;
 import java.awt.Toolkit;
 
 import javax.swing.JFrame;
@@ -9,7 +10,8 @@ import model.BodyList;
 
 public class MainWindow {
     JFrame frame = new JFrame("RocketTest");
-    private double scaling = 1;
+    public double scaling = 1;
+    private Point offset = new Point(-500, 0);
     public BodyCanvas bodyCanvas;
 
     public MainWindow(BodyList bodyList) {
@@ -17,7 +19,7 @@ public class MainWindow {
                 Toolkit.getDefaultToolkit().getScreenSize().height / 2);
 
         frame.setVisible(true);
-        bodyCanvas = new BodyCanvas(bodyList, scaling);
+        bodyCanvas = new BodyCanvas(bodyList, scaling, offset);
         frame.add(bodyCanvas);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }

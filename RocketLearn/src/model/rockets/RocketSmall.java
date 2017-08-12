@@ -24,7 +24,7 @@ public class RocketSmall extends Rocket {
         Vector defaultPosition = new Vector(0, 0);
         Vector defaultVelocity = new Vector(0, 0);
         RocketEngine engine = new RocketEngine(partMass, defaultPosition.addVector2(new Vector(0, -1).rotate(angle)), defaultVelocity, 1);
-        RocketFuelTank tank = new RocketFuelTank(partMass, defaultPosition, defaultVelocity, partMass / 9 * 8, partMass / 9 * 8);
+        RocketFuelTank tank = new RocketFuelTank(partMass, new Vector(defaultPosition), defaultVelocity, partMass / 9 * 8, partMass / 9 * 8);
         SimpleBody cargo = new SimpleBody(partMass, defaultPosition.addVector2(new Vector(0, 1).rotate(angle)), defaultVelocity);
         init(engine, tank, cargo);
 

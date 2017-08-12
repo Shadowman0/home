@@ -30,6 +30,6 @@ public abstract class GuiBody {
         position = vector.toPoint(scaling);
     }
 
-    abstract void paintBody(Graphics g, double scaling);
+    abstract void paintBody(Graphics g, double scaling, Point offset);
 
 }

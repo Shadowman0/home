@@ -2,6 +2,7 @@ package gui;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Point;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,6 +18,7 @@ public class BodyCanvas extends JPanel {
     public List<GuiRocket> guiRockets = new ArrayList<>();
     public List<GuiTrajectory> guiTrajectories = new ArrayList<>();
     public double scaling;
+    public Point offset;
     // public GuiPlanet planet;
     private BodyList bodyList;
 
@@ -32,9 +34,10 @@ public class BodyCanvas extends JPanel {
     // }
     // }
 
-    public BodyCanvas(BodyList bodyList, double scaling) {
+    public BodyCanvas(BodyList bodyList, double scaling, Point offset) {
         this.bodyList = bodyList;
         this.scaling = scaling;
+        this.offset = offset;
         createGuiBodys();
     }
 
@@ -58,13 +61,13 @@ public class BodyCanvas extends JPanel {
 
     public void drawBodys(Graphics g) {
         for (GuiPlanet guiBody : guiPlanets) {
-            guiBody.paintBody(g, scaling);
+            guiBody.paintBody(g, scaling, offset);
         }
         for (GuiRocket guiBody : guiRockets) {
-            guiBody.paintBody(g, scaling);
+            guiBody.paintBody(g, scaling, offset);
         }
         for (GuiTrajectory guiTrajectory : guiTrajectories) {
-            guiTrajectory.paintBody(g, scaling);
+            guiTrajectory.paintBody(g, scaling, offset);
         }
 
         // System.out.println(guiPlanets.get(0).position);
