@@ -24,7 +24,6 @@ public class BodyCanvas extends JPanel {
         g.setColor(Color.BLACK);
         g.fillRect(0, 0, this.getWidth(), this.getHeight());
         drawBodys(g);
-        // drawBodyTrajectories(g);
     }
 
     // private void drawBodyTrajectories(Graphics g) {

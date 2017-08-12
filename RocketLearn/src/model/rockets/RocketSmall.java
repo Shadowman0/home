@@ -42,8 +42,8 @@ public class RocketSmall extends Rocket {
         for (SimpleBody part : realRocketParts) {
             addStrut(helpBody2, part);
         }
-        setPosition(position);
-        setVelocity(velocity);
+        setPosition(new Vector(position));
+        setVelocity(new Vector(velocity));
 
     }
 

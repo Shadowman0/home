@@ -37,7 +37,7 @@ public class SimpleBody extends AbstractBody {
     }
 
     public void resetAcceleration() {
-        accelerationLast.setValue(acceleration);
+        accelerationLast.setValue(new Vector(acceleration));
         acceleration.setValue(new Vector(0, 0));
     }
 

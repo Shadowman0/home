@@ -16,7 +16,7 @@ public class RocketLearnApp {
     private static Timer timer;
     private static Simulation simulation;
     private static MainWindow mainWindow;
-    private static KeyActions keyActions;
+    private static KeyActionsBody keyActions;
 
     public static void main(String[] args) {
         simulation = new Simulation();
@@ -34,9 +34,8 @@ public class RocketLearnApp {
                 simulation.bodyList.planets.get(0).setPosition(new Vector(e.getPoint()));
             }
         });
-        // keyActions = new KeyActions(mainWindow.bodyCanvas,
-        // simulation.bodyList.rockets.get(0));
-        // keyActions.setKeyMaps();
+        keyActions = new KeyActionsBody(mainWindow.bodyCanvas, simulation.bodyList.rockets.get(0), mainWindow.bodyCanvas.guiRockets.get(0));
+        keyActions.setKeyMaps();
         timer.start();
 
     }
