@@ -6,7 +6,7 @@ import model.Vector;
 public abstract class Forces {
 
     public static final double GRAVITY_CONSTANT = 100;
-    public static final double HOOK_CONSTANT = 0.01;
+    public static final double HOOK_CONSTANT = 1;
 
     public static Vector gravityForceBetweenBodys(AbstractBody body1, AbstractBody body2) {
         Vector deltaA = body1.distanceVector(body2);

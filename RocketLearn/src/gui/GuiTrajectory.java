@@ -12,32 +12,32 @@ import model.Vector;
 
 public class GuiTrajectory extends GuiBody {
 
+    public GuiTrajectory(AbstractBody body, Point offset, double scaling) {
+        super(body, offset, scaling);
+    }
+
     List<Vector> dotsReal = new ArrayList<>();
     List<Point> dots = new ArrayList<>();
 
-    public GuiTrajectory(AbstractBody body, double scaling) {
-        super(body, scaling);
-    }
-
-    private void setScaledPosition(double scaling) {
+    private void setScaledPosition(double scaling, Point offset) {
         dots = new ArrayList<>();
         for (Vector vector : dotsReal) {
-            dots.add(vector.toPoint(scaling));
+            dots.add(vector.toPointWithOffset(scaling, offset));
         }
     }
 
     @Override
     void paintBody(Graphics g, double scaling, Point offset) {
         // TODO Auto-generated method stub
-        dotsReal.add(body.getPosition());
+        dotsReal.add(getBody().getPosition());
         Graphics2D g2 = (Graphics2D) g;
-        setScaledPosition(scaling);
+        setScaledPosition(scaling, offset);
         g2.setPaint(Color.YELLOW);
-        int x1 = dots.get(0).x - offset.x;
-        int y1 = dots.get(0).y - offset.y;
+        int x1 = dots.get(0).x;
+        int y1 = dots.get(0).y;
         for (Point point : dots) {
-            int x2 = point.x - offset.x;
-            int y2 = point.y - offset.y;
+            int x2 = point.x;
+            int y2 = point.y;
             g2.drawLine(x1, y1, x2, y2);
             x1 = x2;
             y1 = y2;

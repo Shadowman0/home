@@ -46,7 +46,7 @@ public class BodyList {
         }
 
         for (Rocket rocket : rockets) {
-            // rocket.calcInnerForces();
+            rocket.calcInnerForces();
             for (SimpleBody planet : planets) {
                 forceVector = Forces.gravityForceBetweenBodys(rocket, planet);
                 rocket.addAccelerationByForce(forceVector);

@@ -32,7 +32,7 @@ public class Strut {
 
     public void pushPull() {
         Vector forceVector = Forces.hookForceBetweenBodys(firstBody, secondBody, distance);
-        firstBody.addAccelerationByForce(forceVector);
+        firstBody.addAccelerationByForce(forceVector.multByScalar(-1));
         secondBody.addAccelerationByForce(forceVector);
     }
 

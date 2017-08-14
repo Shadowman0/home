@@ -80,6 +80,11 @@ public class Vector {
         return point;
     }
 
+    public Point toPointWithOffset(double scaling, Point offset) {
+        Point point = new Point((int) Math.round(offset.x / scaling + value[0] * scaling), (int) Math.round(offset.y / scaling + value[1] * scaling));
+        return point;
+    }
+
     public Point toPoint(double scaling, Point offset) {
         Point point = new Point((int) (Math.round(value[0] * scaling) + offset.getX()), (int) (Math.round(value[1] * scaling) + offset.getY()));
         return point;

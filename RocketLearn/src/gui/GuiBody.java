@@ -9,7 +9,12 @@ import model.Vector;
 
 public abstract class GuiBody {
     public Point position;
-    public AbstractBody body;
+    protected AbstractBody body;
+
+    public AbstractBody getBody() {
+        return body;
+    }
+
     protected Color color;
 
     public Color getColor() {
@@ -20,14 +25,14 @@ public abstract class GuiBody {
         this.color = color;
     }
 
-    public GuiBody(AbstractBody body, double scaling) {
+    public GuiBody(AbstractBody body, Point offset, double scaling) {
         super();
         this.body = body;
-        setScaledPosition(body.getPosition(), scaling);
+        setScaledPosition(body.getPosition(), offset, scaling);
     }
 
-    public void setScaledPosition(Vector vector, double scaling) {
-        position = vector.toPoint(scaling);
+    public void setScaledPosition(Vector vector, Point offset, double scaling) {
+        position = vector.toPointWithOffset(scaling, offset);
     }
 
     abstract void paintBody(Graphics g, double scaling, Point offset);
