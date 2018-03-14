@@ -20,7 +20,7 @@ public class GuiPlanet extends GuiBody {
     public GuiPlanet(Planet planet, Point offset, double scaling) {
         super(planet, offset, scaling);
         this.body = planet;
-        // setScaledPosition(planet.getPosition(), planet.getRadius(), offset, scaling);
+        setScaledPosition(planet.getPosition(), planet.getRadius(), offset, scaling);
         repositionShape(planet, offset, scaling);
     }
 
@@ -45,14 +45,14 @@ public class GuiPlanet extends GuiBody {
     @Override
     public void paintBody(Graphics g, double scaling, Point offset) {
         Graphics2D g2 = (Graphics2D) g;
-        // setScaledPosition(getBody().getPosition(), ((Planet) getBody()).getRadius(),
-        // offset, scaling);
+        setScaledPosition(getBody().getPosition(), ((Planet) getBody()).getRadius(),
+                offset, scaling);
         g2.setPaint(Color.BLUE);
         repositionShape(body, offset, scaling);
-        g2.fill(shape);
-        // g2.fillRect(position.x, position.y, 10, 10);
-        // g2.fillOval(position.x - radius, position.y - radius, radius * 2, radius *
-        // 2);
-        // System.out.println(radius);
+        // g2.fill(shape);
+        g2.fillRect(position.x, position.y, 10, 10);
+        g2.fillOval(position.x - radius, position.y - radius, radius * 2, radius *
+                2);
+        System.out.println(radius);
     }
 }

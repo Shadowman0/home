@@ -55,7 +55,8 @@ public class SimpleBody extends AbstractBody {
     }
 
     public void addAccelerationByForce(Vector forceVector) {
-        acceleration = acceleration.addVector2(forceVector.multByScalar(1 / getMass()));
+        acceleration = acceleration.addVector2(
+                forceVector.multByScalar(1 / getMass()));
     }
 
     public void calcInnerForces() {

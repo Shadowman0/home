@@ -21,7 +21,7 @@ public class RocketLearnApp {
     private static MouseWheelEvent mouseWheelEvent;
 
     public static void main(String[] args) {
-        simulation = new Simulation();
+        Simulation simulation = new Simulation();
         mainWindow = new MainWindow(simulation.bodyList);
 
         timer = new Timer(20, new ActionListener() {
@@ -39,9 +39,7 @@ public class RocketLearnApp {
         });
         keyActionsBody = new KeyActionsBody(mainWindow.bodyCanvas, simulation.bodyList.rockets.get(0), mainWindow.bodyCanvas.guiRockets.get(0));
         keyActionsGui = new KeyActionsGui(mainWindow.bodyCanvas, mainWindow, timer);
-
         mouseWheelEvent = new MouseWheelEvent(mainWindow.bodyCanvas, mainWindow);
-
         timer.start();
 
     }
