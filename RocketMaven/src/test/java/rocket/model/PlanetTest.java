@@ -12,6 +12,6 @@ public class PlanetTest {
 
 	@Test
 	public void doesNotFail() throws Exception {
-
+		System.out.println("das ist ein test");
 	}
 }
