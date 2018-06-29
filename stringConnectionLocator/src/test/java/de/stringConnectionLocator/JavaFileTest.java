@@ -3,23 +3,20 @@ package de.stringConnectionLocator;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.io.IOException;
-import java.nio.file.Files;
 import java.util.List;
+import java.util.Set;
 
 import org.junit.Before;
 import org.junit.Test;
 
 public class JavaFileTest {
-	private static final String FILE = "C:\\Users\\Pieed\\git\\home\\RocketLearn\\src\\model\\BodyList.java";
+	private static final String FILE = "C:\\Users\\Pieed\\git\\home\\RocketLearn\\src\\model\\Planet.java";
+	private static final String FILE2 = "C:\\Users\\Pieed\\git\\home\\RocketLearn\\src\\model\\SimpleBody.java";
 	private ClassPath path;
 	private JavaFile javaFile;
 
 	@Before
 	public void setUp() throws IOException {
-		path = ClassPath.toClassPath(FILE);
-		List<String> content = Files.readAllLines(path.getPath());
-		javaFile = JavaFileBuilder.aJavaFile().withContent(content).withClassPath(path).withFilePath(path.getPath())
-				.build();
 		javaFile = JavaFile.parse(FILE);
 
 	}
@@ -38,7 +35,21 @@ public class JavaFileTest {
 	}
 
 	@Test
-	public void sameFolder() throws Exception {
+	public void getGetReturnTypes() throws Exception {
+		List<String> types = javaFile.getGetReturnTypes();
+		assertThat(types).isEqualTo("");
+	}
 
+	@Test
+	public void getPublicReturnPrimitives() throws Exception {
+		Set<String> types = javaFile.getPublicReturnPrimitives();
+		assertThat(types).contains("double", "boolean");
+	}
+
+	@Test
+	public void getPublicReturnTypes() throws Exception {
+		javaFile = JavaFile.parse(FILE2);
+		Set<String> types = javaFile.getPublicReturnTypes();
+		assertThat(types).contains("Vector");
 	}
 }

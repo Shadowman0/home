@@ -27,7 +27,7 @@ public class ClassGraphDrawerTest {
 
 		GraphvizJdkEngine graphvizJdkEngine = new GraphvizJdkEngine();
 		Graphviz.useEngine(graphvizJdkEngine, graphvizJdkEngine);
-		Graph g = graph("example1").directed();
+		Graph g = graph("example1").cluster();
 		g = addImportEdges(sourceReader, g);
 		g = addSamePackageUsageEdges(sourceReader, g);
 		System.out.println(g.toString());

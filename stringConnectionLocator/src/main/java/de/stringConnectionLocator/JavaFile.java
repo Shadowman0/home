@@ -4,7 +4,11 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 import net.karneim.pojobuilder.GeneratePojoBuilder;
@@ -80,6 +84,37 @@ public class JavaFile {
 
 	public boolean uses(JavaFile javaFile) {
 		return getContentAsString().matches(".*\\b" + javaFile.getClassPath().getClassName() + "\\b.*");
+	}
+
+	public List<String> getGetReturnTypes() {
+		ArrayList<String> result = new ArrayList<>();
+		Matcher m = Pattern.compile(".?public \\b(\\w+)\\b get[A-Z].?").matcher(getContentAsString());
+		while (m.find()) {
+			result.add(m.group(1));
+		}
+		return result;
+	}
+
+	public Set<String> getPublicReturnPrimitives() {
+		Set<String> result = new HashSet<>();
+		Matcher m = Pattern.compile(".?public \\b([a-z]+\\w?)\\b \\w+.?").matcher(getContentAsString());
+		while (m.find()) {
+			if (!m.group(1).equals("class") && !m.group(1).equals("void")) {
+				result.add(m.group(1));
+			}
+		}
+		return result;
+	}
+
+	public Set<String> getPublicReturnTypes() {
+		Set<String> result = new HashSet<>();
+		Matcher m = Pattern.compile(".?public \\b([A-Z]\\w*)\\b \\w+.?").matcher(getContentAsString());
+		while (m.find()) {
+			if (!m.group(1).equals("class")) {
+				result.add(m.group(1));
+			}
+		}
+		return result;
 	}
 
 }
