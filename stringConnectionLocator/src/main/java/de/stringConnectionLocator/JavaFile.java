@@ -117,4 +117,44 @@ public class JavaFile {
 		return result;
 	}
 
+	public Set<MethodSignature> getMethodsWithoutGenerics() {
+		Set<MethodSignature> result = new HashSet<>();
+		Matcher m = Pattern.compile("\\s*((public|private|))\\s*(\\b\\w*\\b)\\s*(\\w+?)[(](\\w*?\\s*?\\w*?)?[)]\\s[{]")
+				.matcher(getContentAsString());
+		while (m.find()) {
+			if (!m.group(3).equals(classPath.getClassName())) {
+				MethodSignature methodSignature = new MethodSignature();
+				methodSignature.setModifiers(m.group(2));
+				methodSignature.setReturnType(m.group(3));
+				methodSignature.setName(m.group(4));
+				methodSignature.setParameters(m.group(5).split(","));
+				result.add(methodSignature);
+			}
+		}
+		return result;
+	}
+
+	public Set<MethodSignature> getGetters() {
+		Set<MethodSignature> getters = getMethodsWithoutGenerics().stream().filter(MethodSignature::isGetter)
+				.collect(Collectors.toSet());
+		return getters;
+	}
+
+	public Set<MethodSignature> getConstructors() {
+		Set<MethodSignature> result = new HashSet<>();
+		Matcher m = Pattern.compile("\\s*((public|private|))\\s*(SimpleBody)[(](.*?)?[)]\\s[{]")
+				.matcher(getContentAsString());
+		while (m.find()) {
+			if (!m.group(3).equals(classPath.getClassName())) {
+				MethodSignature methodSignature = new MethodSignature();
+				methodSignature.setModifiers(m.group(2));
+				methodSignature.setReturnType(m.group(3));
+				methodSignature.setName(m.group(3));
+				// methodSignature.setParameters(m.group(4).split(","));
+				result.add(methodSignature);
+			}
+		}
+		return result;
+	}
+
 }

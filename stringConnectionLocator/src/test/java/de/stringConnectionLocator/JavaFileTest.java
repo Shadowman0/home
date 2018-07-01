@@ -52,4 +52,25 @@ public class JavaFileTest {
 		Set<String> types = javaFile.getPublicReturnTypes();
 		assertThat(types).contains("Vector");
 	}
+
+	@Test
+	public void getMethodsWithoutGenerics() throws Exception {
+		javaFile = JavaFile.parse(FILE2);
+		Set<MethodSignature> types = javaFile.getMethodsWithoutGenerics();
+		assertThat(types).isEqualTo("");
+	}
+
+	@Test
+	public void getGetters() throws Exception {
+		javaFile = JavaFile.parse(FILE2);
+		Set<MethodSignature> types = javaFile.getGetters();
+		assertThat(types).isEqualTo("");
+	}
+
+	@Test
+	public void getConstructors() throws Exception {
+		javaFile = JavaFile.parse(FILE2);
+		Set<MethodSignature> types = javaFile.getConstructors();
+		assertThat(types).isEqualTo("");
+	}
 }
