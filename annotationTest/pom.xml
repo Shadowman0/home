@@ -4,27 +4,27 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>annotationTest</groupId>
 	<artifactId>annotationTest</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.1</version>
 	<properties>
 		<auto-service.version>1.0-rc2</auto-service.version>
 		<maven-compiler-plugin.version>
 			3.5.1
 		</maven-compiler-plugin.version>
 	</properties>
-
 	<dependencies>
-
 		<dependency>
 			<groupId>com.google.auto.service</groupId>
 			<artifactId>auto-service</artifactId>
 			<version>${auto-service.version}</version>
 		</dependency>
-
+		<dependency>
+			<groupId>org.freemarker</groupId>
+			<artifactId>freemarker</artifactId>
+			<version>2.3.28</version>
+		</dependency>
 	</dependencies>
-
 	<build>
 		<plugins>
-
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
