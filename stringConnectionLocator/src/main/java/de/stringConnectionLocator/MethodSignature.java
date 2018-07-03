@@ -9,6 +9,22 @@ public class MethodSignature {
 	private String name;
 	private String[] parameters;
 
+	public String getModifiers() {
+		return modifiers;
+	}
+
+	public String getReturnType() {
+		return returnType;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public String[] getParameters() {
+		return parameters;
+	}
+
 	public void setModifiers(String modifiers) {
 		this.modifiers = modifiers;
 

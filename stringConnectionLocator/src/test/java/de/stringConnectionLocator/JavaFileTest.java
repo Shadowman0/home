@@ -10,8 +10,8 @@ import org.junit.Before;
 import org.junit.Test;
 
 public class JavaFileTest {
-	private static final String FILE = "C:\\Users\\Pieed\\git\\home\\RocketLearn\\src\\model\\Planet.java";
-	private static final String FILE2 = "C:\\Users\\Pieed\\git\\home\\RocketLearn\\src\\model\\SimpleBody.java";
+	private static final String FILE2 = "C:\\Users\\pwegner\\eemweb-gitrepos\\EEMWebMigrator\\commons-migrator\\src\\main\\java\\de\\etengo\\eemweb\\commons\\migrator\\domain\\vertragsmanagement\\Vertrag.java";
+	private static final String FILE = FILE2;
 	private ClassPath path;
 	private JavaFile javaFile;
 
@@ -64,6 +64,17 @@ public class JavaFileTest {
 	public void getGetters() throws Exception {
 		javaFile = JavaFile.parse(FILE2);
 		Set<MethodSignature> types = javaFile.getGetters();
+		assertThat(types).isEqualTo("");
+	}
+
+	@Test
+	public void getGetters_Zuweisung() throws Exception {
+		javaFile = JavaFile.parse(FILE2);
+		Set<MethodSignature> types = javaFile.getGetters();
+		for (MethodSignature methodSignature : types) {
+			System.out.println("result.set" + methodSignature.getName().substring(3)
+					+ "(entity." + methodSignature.getName() + "());");
+		}
 		assertThat(types).isEqualTo("");
 	}
 

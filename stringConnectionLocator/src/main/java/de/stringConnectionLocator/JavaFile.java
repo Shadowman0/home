@@ -117,7 +117,7 @@ public class JavaFile {
 		return result;
 	}
 
-	public Set<MethodSignature> getMethodsWithoutGenerics() {
+	public Set <MethodSignature> getMethodsWithoutGenerics() {
 		Set<MethodSignature> result = new HashSet<>();
 		Matcher m = Pattern.compile("\\s*((public|private|))\\s*(\\b\\w*\\b)\\s*(\\w+?)[(](\\w*?\\s*?\\w*?)?[)]\\s[{]")
 				.matcher(getContentAsString());
