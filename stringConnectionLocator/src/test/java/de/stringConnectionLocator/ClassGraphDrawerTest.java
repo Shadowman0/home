@@ -17,7 +17,7 @@ import guru.nidi.graphviz.model.Graph;
 import guru.nidi.graphviz.model.Node;
 
 public class ClassGraphDrawerTest {
-	private static final String FILEPATH = "C:\\Users\\Pieed\\git\\home\\RocketLearn\\src\\gui";
+	private static final String FILEPATH = "C:\\Users\\pwegner\\eemweb-gitrepos\\EEMWebPerson\\person\\src\\main\\java\\de\\etengo\\eemweb\\person\\domain\\";
 
 	@Test
 	public void testName() throws Exception {

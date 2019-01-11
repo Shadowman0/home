@@ -69,11 +69,12 @@ public class JavaFileTest {
 
 	@Test
 	public void getGetters_Zuweisung() throws Exception {
-		javaFile = JavaFile.parse(FILE2);
+		javaFile = JavaFile.parse(
+				"C:\\Users\\pwegner\\eemweb-gitrepos\\EEMWebMigrator\\commons-migrator\\src\\main\\java\\de\\etengo\\eemweb\\commons\\migrator\\domain\\abrechnung\\BelegPosition.java");
 		Set<MethodSignature> types = javaFile.getGetters();
 		for (MethodSignature methodSignature : types) {
-			System.out.println("result.set" + methodSignature.getName().substring(3)
-					+ "(entity." + methodSignature.getName() + "());");
+			System.out.println("result.set" + methodSignature.getName().substring(3) + "(entity."
+					+ methodSignature.getName() + "());");
 		}
 		assertThat(types).isEqualTo("");
 	}

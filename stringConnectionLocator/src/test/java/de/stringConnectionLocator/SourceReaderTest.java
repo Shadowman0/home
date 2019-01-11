@@ -12,7 +12,7 @@ import org.junit.Test;
 public class SourceReaderTest //
 // extends AbstractIntegrationTest //
 {
-	private static final String FILEPATH = "C:\\Users\\Pieed\\git\\home\\RocketLearn\\src";
+	private static final String FILEPATH = "C:\\Users\\pwegner\\eemweb-gitrepos\\EEMWebPerson\\person\\src\\main\\java\\de\\etengo\\eemweb\\person\\domain\\";
 
 	@Test
 	@Ignore
