@@ -15,12 +15,17 @@ public class SourceReader {
 		return Files.walk(Paths.get(filepath)).filter(Files::isRegularFile).collect(Collectors.toList());
 	}
 
-	public HashMap<String, JavaFile> readFilesToFileMap(String filepath) throws IOException {
-		List<Path> javaFiles = getAllJavaFileNames(filepath);
+	public HashMap<String, JavaFile> readFilesToFileMap(String filepath) {
 		HashMap<String, JavaFile> hashMap = new HashMap<>();
-		for (Path path : javaFiles) {
-			JavaFile javaFile = JavaFile.parse(path);
-			hashMap.put(javaFile.getClassPath().toString(), javaFile);
+		try {
+			List<Path> javaFiles = getAllJavaFileNames(filepath);
+			for (Path path : javaFiles) {
+				JavaFile javaFile;
+				javaFile = JavaFile.parse(path);
+				hashMap.put(javaFile.getClassPath().toString(), javaFile);
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
 		return hashMap;
 	}

@@ -10,8 +10,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 public class JavaFileTest {
-	private static final String FILE2 = "C:\\Users\\pwegner\\eemweb-gitrepos\\EEMWebMigrator\\commons-migrator\\src\\main\\java\\de\\etengo\\eemweb\\commons\\migrator\\domain\\vertragsmanagement\\Vertrag.java";
-	private static final String FILE = FILE2;
+	private static final String FILE = "U:\\git\\ownrepos\\home\\explorer\\src\\main\\java\\files\\explorer\\BackendDataDto.java";
 	private ClassPath path;
 	private JavaFile javaFile;
 
@@ -48,21 +47,21 @@ public class JavaFileTest {
 
 	@Test
 	public void getPublicReturnTypes() throws Exception {
-		javaFile = JavaFile.parse(FILE2);
+		javaFile = JavaFile.parse(FILE);
 		Set<String> types = javaFile.getPublicReturnTypes();
 		assertThat(types).contains("Vector");
 	}
 
 	@Test
 	public void getMethodsWithoutGenerics() throws Exception {
-		javaFile = JavaFile.parse(FILE2);
+		javaFile = JavaFile.parse(FILE);
 		Set<MethodSignature> types = javaFile.getMethodsWithoutGenerics();
 		assertThat(types).isEqualTo("");
 	}
 
 	@Test
 	public void getGetters() throws Exception {
-		javaFile = JavaFile.parse(FILE2);
+		javaFile = JavaFile.parse(FILE);
 		Set<MethodSignature> types = javaFile.getGetters();
 		assertThat(types).isEqualTo("");
 	}
@@ -81,7 +80,7 @@ public class JavaFileTest {
 
 	@Test
 	public void getConstructors() throws Exception {
-		javaFile = JavaFile.parse(FILE2);
+		javaFile = JavaFile.parse(FILE);
 		Set<MethodSignature> types = javaFile.getConstructors();
 		assertThat(types).isEqualTo("");
 	}
