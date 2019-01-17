@@ -1,6 +1,6 @@
 package files.explorer;
 
-import java.util.HashMap;
+import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -11,8 +11,8 @@ import de.stringConnectionLocator.JavaFile;
 @Component
 public class DataMapper {
 	
-	public List<BackendDataDto> map(HashMap<String, JavaFile> fileMap) {
-		return fileMap.values().stream().map(file -> map(file)).collect(Collectors.toList());
+	public List<BackendDataDto> map(Collection<JavaFile> files) {
+		return files.stream().map(file -> map(file)).collect(Collectors.toList());
 	}
 	
 	public BackendDataDto map(JavaFile file) {

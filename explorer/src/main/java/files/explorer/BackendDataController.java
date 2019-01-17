@@ -2,10 +2,12 @@ package files.explorer;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import de.stringConnectionLocator.JavaFile;
@@ -27,6 +29,17 @@ public class BackendDataController {
 	
 	@RequestMapping(value = "/files")
 	List<BackendDataDto> getList() {
-		return mapper.map(files);
+		return mapper.map(files.values());
+	}
+	
+	@RequestMapping(value = "/files")
+	List<BackendDataDto> searchFiles(@RequestParam(value = "name", required = true) String infix) {
+		List<JavaFile> fittingFiles = filterByName(infix);
+		return mapper.map(fittingFiles);
+	}
+
+	private List<JavaFile> filterByName(String infix) {
+		return files.values().stream().filter(file -> !file.getClassPath().getClassName().contains(infix))
+				.collect(Collectors.toList());
 	}
 }
