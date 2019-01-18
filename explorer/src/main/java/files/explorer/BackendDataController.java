@@ -28,18 +28,13 @@ public class BackendDataController {
 	}
 	
 	@RequestMapping(value = "/files")
-	List<BackendDataDto> getList() {
-		return mapper.map(files.values());
-	}
-	
-	@RequestMapping(value = "/files")
-	List<BackendDataDto> searchFiles(@RequestParam(value = "name", required = true) String infix) {
+	List<BackendDataDto> searchFiles(@RequestParam(defaultValue = "", value = "name", required = false) String infix) {
 		List<JavaFile> fittingFiles = filterByName(infix);
 		return mapper.map(fittingFiles);
 	}
-
+	
 	private List<JavaFile> filterByName(String infix) {
-		return files.values().stream().filter(file -> !file.getClassPath().getClassName().contains(infix))
+		return files.values().stream().filter(file -> file.getClassPath().getClassName().toUpperCase().contains(infix.toUpperCase()))
 				.collect(Collectors.toList());
 	}
 }

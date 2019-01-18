@@ -14,13 +14,13 @@ public class BackendDataControllerTest {
 	
 	@Test
 	public void getList_JsonComparison() {
-		assertThat(controller.getList()).extracting(it -> ObjectMapping.jsonBuilder().writeValueAsString(it)).descriptionText()
+		assertThat(controller.searchFiles("")).extracting(it -> ObjectMapping.jsonBuilder().writeValueAsString(it)).descriptionText()
 				.contains("files.explorer.source.PersonMapper");
 	}
 	
 	@Test
 	public void getList_FullNames() {
-		assertThat(controller.getList()).extracting(it -> it.getFullName()).containsExactlyInAnyOrder(//
+		assertThat(controller.searchFiles("")).extracting(it -> it.getFullName()).containsExactlyInAnyOrder(//
 				"files.explorer.source.Person", "files.explorer.source.PersonDto", "files.explorer.source.PersonMapper");
 	}
 	
